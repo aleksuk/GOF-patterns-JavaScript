@@ -89,7 +89,7 @@ var SomeObserver = (function () {
     function SomeObserver(subject) {
         var onChange = function (data) {
             console.log(data);
-            subject.unsubscribe('change', cb);
+            subject.unsubscribe('change', onChange);
         };
         
         subject.subscribe('change', onChange);
