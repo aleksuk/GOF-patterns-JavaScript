@@ -25,9 +25,9 @@ var Subject = (function () {
             }
         },
 
-        notify: function (data) {
+        notify: function () {
             this.observers.forEach(function (observer) {
-                observer.update(data);
+                observer.update();
             });
         }
     };
@@ -67,7 +67,7 @@ var Observer = (function () {
         return this;
     }
     
-    Observer.prototype.update = function (data) {};
+    Observer.prototype.update = function () {};
     
     return Observer;
     

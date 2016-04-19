@@ -58,7 +58,7 @@ var ConcreteSubject = (function (Subject) {
     inherit(Subject, ConcreteSubject);
     
     ConcreteSubject.prototype.set = function (prop, value) {
-        if (!value &&Object.prototype.toString.call(prop) === '[object Object]') {
+        if (!value && Object.prototype.toString.call(prop) === '[object Object]') {
             this.state = prop;
         } else {
             this.state[prop] = value;
