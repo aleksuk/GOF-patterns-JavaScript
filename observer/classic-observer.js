@@ -18,10 +18,11 @@ var Subject = (function () {
             this.observers.push(observer);
         },
 
-        detach: function (event, observer) {
-            var observerIndex = this.observers[event].indexOf(observer);
+        detach: function (observer) {
+            var observerIndex = this.observers.indexOf(observer);
+
             if (observerIndex > -1) {
-                this.observers[event].slice(observerIndex, 1);
+                this.observers.splice(observerIndex, 1);
             }
         },
 

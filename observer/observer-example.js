@@ -21,7 +21,7 @@ var Subject = (function () {
 
         unsubscribe: function (event, observer) {
             var observerIndex;
-            
+
             if (!event) {
                 this.observers = {};
             } else if (event && !observer) {
@@ -29,7 +29,7 @@ var Subject = (function () {
             } else {
                 observerIndex = this.observers[event].indexOf(observer);
                 if (observerIndex > -1) {
-                    this.observers[event].slice(observerIndex, 1);
+                    this.observers[event].splice(observerIndex, 1);
                 }
             }
         },
@@ -86,12 +86,15 @@ var ConcreteSubject = (function (Subject) {
 
 var SomeObserver = (function () {
     
-    function SomeObserver(observer) {
-        observer.subscribe('change', function (data) {
+    function SomeObserver(subject) {
+        var onChange = function (data) {
             console.log(data);
-        });
+            subject.unsubscribe('change', cb);
+        };
         
-        observer.subscribe('change:test', function (data) {
+        subject.subscribe('change', onChange);
+        
+        subject.subscribe('change:test', function (data) {
             console.log('change:test = ', data); 
         });
     }
