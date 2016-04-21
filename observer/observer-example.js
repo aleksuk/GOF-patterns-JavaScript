@@ -35,11 +35,11 @@ var Subject = (function () {
         },
 
         publish: function (event, data) {
-            this.observers[event] = this.observers[event] || [];
-
-            this.observers[event].forEach(function (observer) {
-                observer(data);
-            });
+            if (this.observers[event]) {
+                this.observers[event].forEach(function (observer) {
+                    observer(data);
+                }); 
+            }
         }
     }
 
